@@ -27,7 +27,9 @@
     <h1>Time Since Government Shutdown</h1>
     <h3 id="time-since"></p>
     <h1>Total Cash Flushed Down Toilet</h1>
-     <h3 id="cash-flushed"></p>
+     <h3 id="cash-flushed"></h3>
+    <h1>Hours of Work Not Done</h1>
+    <h3 id="effort-wasted"></h3>
 
     <script>
         // Set the past date and time (e.g., January 1, 2023, 00:00:00)
@@ -35,6 +37,7 @@
         const timeSinceElement = document.getElementById('time-since');
 
         const cashFlushedElement = document.getElementById('cash-flushed');
+        const effortWastedElement = document.getElementById('effort-wasted');
 
         function updateTimeSince() {
             const now = new Date();
@@ -45,8 +48,11 @@
             const minutes = Math.floor(difference / (1000 * 60)) % 60;
             const hours = Math.floor(difference / (1000 * 60 * 60)) % 24;
             const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+            const pricePerDay = 450000000;
+            const hoursWastedPerDay = 750000*8*7/5;
 
-            var price = days*450000000+(hours*450000000/24)+(minutes*450000000/(24*60))+seconds*450000000/(24*60*60);
+            var price = days*pricePerDay+(hours*pricePerDay/24)+(minutes*pricePerDay/(24*60))+seconds*pricePerDay/(24*60*60);
+            var hoursWasted = days*hoursWastedPerDay+(hours*hoursWastedPerDay/24)+(minutes*hoursWastedPerDay/(24*60))+seconds*hoursWastedPerDay/(24*60*60);
 
             const options = {
     minimumFractionDigits: 2,
@@ -54,6 +60,7 @@
   };
 
             var displayPrice = price.toLocaleString('en-US', options);
+            var displayHoursWasted = hoursWasted.toLocaleString('en-US', options);
 
             // Format the output
             timeSinceElement.textContent = 
@@ -62,6 +69,8 @@
 
             cashFlushedElement.textContent = 
                 "$"+`${displayPrice} wasted`;
+            effortWastedElement.textContent = 
+                `${displayHoursWasted} work hours wasted`;
         }
 
         // Update the counter every second

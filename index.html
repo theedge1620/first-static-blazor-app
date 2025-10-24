@@ -28,7 +28,14 @@
             const hours = Math.floor(difference / (1000 * 60 * 60)) % 24;
             const days = Math.floor(difference / (1000 * 60 * 60 * 24));
 
-            const price = days*4500000+(hours*4500000/24)+(minutes*4500000/(24*60))+seconds*4500000/(24*60*60);
+            var price = days*4500000+(hours*4500000/24)+(minutes*4500000/(24*60))+seconds*4500000/(24*60*60);
+
+            const options = {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+  };
+
+            var displayPrice = price.toLocaleString('en-US', options);
 
             // Format the output
             timeSinceElement.textContent = 
@@ -36,7 +43,7 @@
         
 
             cashFlushedElement.textContent = 
-                `${price} dollars wasted`;
+                `${displayPrice} dollars wasted`;
         }
 
         // Update the counter every second

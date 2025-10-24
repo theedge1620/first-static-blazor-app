@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time Since Counter</title>
+</head>
+<body>
+    <h1>Time Since Event</h1>
+    <p id="time-since"></p>
+
+    <script>
+        // Set the past date and time (e.g., January 1, 2023, 00:00:00)
+        const pastDate = new Date('2025-10-01T00:00:00'); 
+        const timeSinceElement = document.getElementById('time-since');
+
+        function updateTimeSince() {
+            const now = new Date();
+            const difference = now.getTime() - pastDate.getTime(); // Difference in milliseconds
+
+            // Calculate time components
+            const seconds = Math.floor(difference / 1000) % 60;
+            const minutes = Math.floor(difference / (1000 * 60)) % 60;
+            const hours = Math.floor(difference / (1000 * 60 * 60)) % 24;
+            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+
+            // Format the output
+            timeSinceElement.textContent = 
+                `${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds`;
+        }
+
+        // Update the counter every second
+        setInterval(updateTimeSince, 1000);
+
+        // Initial call to display the time immediately
+        updateTimeSince();
+    </script>
+</body>
+</html>

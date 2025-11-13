@@ -33,7 +33,9 @@
 
     <script>
         // Set the past date and time (e.g., January 1, 2023, 00:00:00)
-        const pastDate = new Date('2025-10-01T00:00:00'); 
+        const pastDate = new Date('2025-09-30T17:00:00'); 
+        const endDate = new Date('2025-11-13T05:00:00'); 
+
         const timeSinceElement = document.getElementById('time-since');
 
         const cashFlushedElement = document.getElementById('cash-flushed');
@@ -41,7 +43,7 @@
 
         function updateTimeSince() {
             const now = new Date();
-            const difference = now.getTime() - pastDate.getTime(); // Difference in milliseconds
+            const difference = endDate.getTime() - pastDate.getTime(); // Difference in milliseconds
 
             // Calculate time components
             const seconds = Math.floor(difference / 1000) % 60;
